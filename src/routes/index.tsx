@@ -304,7 +304,7 @@ function Marquee() {
     "★",
     "Pide y come",
     "★",
-    "Bacon Yan",
+    "Bacon Jam Burger",
     "★",
     "Av. 26",
     "★",
