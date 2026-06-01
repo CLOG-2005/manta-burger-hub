@@ -188,8 +188,6 @@ function Home() {
       <Location />
       <Footer />
       <MobileBar />
-      <Footer />
-      <MobileBar />
     </div>
   );
 }
