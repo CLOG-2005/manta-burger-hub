@@ -69,44 +69,108 @@ type Product = {
 
 const products: Product[] = [
   {
-    name: "Bacon Yan",
-    price: "$9.00",
-    desc: "Carne 200g, tocino crocante, extra cheddar y salsa secreta de la casa.",
+    name: "Bacon Jam Burger",
+    price: "$5.00",
+    desc: "Explosión de sabor con un toque oscuro. Pan brioche vainilla, carne 120g de res, reducción de café y mermelada de tocino. Una bomba ahumada y dulce.",
     img: productBaconYan,
     tag: "Top",
   },
   {
-    name: "Alitas Fuego",
-    price: "$7.50",
-    desc: "12 piezas bañadas en salsa búfalo artesanal con dip de blue cheese.",
-    img: productAlitas,
+    name: "Oklahoma",
+    price: "$4.00",
+    desc: "Pan de papa 400°, salsa de la casa (opcional), 120g de carne de res, cebolla caramelizada, queso cheddar.",
+    img: productDoble,
+  },
+  {
+    name: "Cheeseburger Americana",
+    price: "$5.00",
+    desc: "Clásica, real. Pan de papa 400°, mostaza, cebolla en cubos, pepinillos, 120g de res, queso americano.",
+    img: productCombo,
+  },
+  {
+    name: "Sweet BBQ Burger",
+    price: "$5.00",
+    desc: "Dulce, ahumada. Pan artesanal de pretzel 400°, salsa BBQ, 120g de res, queso americano, tocino gratinado.",
+    img: productBaconYan,
+    tag: "Nuevo",
+  },
+  {
+    name: "Chili Cheese Dog",
+    price: "$4.50",
+    desc: "Pan de papa tostado, salchicha estilo New York, chili auténtico con todo el power mexicano y queso americano fundido como corona.",
+    img: productHotdog,
     tag: "Picante",
   },
   {
-    name: "Callejero XL",
-    price: "$5.00",
-    desc: "Salchicha alemana, cebolla caramelizada, lluvia de papitas y triple salsa.",
-    img: productHotdog,
-  },
-  {
-    name: "Papas Cargadas",
-    price: "$6.00",
-    desc: "Papas crocantes con queso fundido, tocino y cebollín fresco.",
+    name: "Cheddar Bacon (Papas)",
+    price: "$4.50",
+    desc: "300g de crocantes papas bañadas en queso americano fundido y bacon bits.",
     img: productPapas,
   },
+];
+
+type MenuCategory = {
+  title: string;
+  items: { name: string; price: string; desc?: string; tag?: string }[];
+};
+
+const fullMenu: MenuCategory[] = [
   {
-    name: "La Doble Queso",
-    price: "$10.00",
-    desc: "Doble carne, doble cheddar, pickles y pan sésamo brioche.",
-    img: productDoble,
-    tag: "Top",
+    title: "Hamburguesas",
+    items: [
+      { name: "Oklahoma", price: "$4.00", desc: "Pan de papa 400°, salsa de la casa, 120g de res, cebolla caramelizada, queso cheddar." },
+      { name: "Cheeseburger", price: "$4.00", desc: "Jugosa. Pan de papa 400°, salsa de la casa, carne 120g de res, queso cheddar." },
+      { name: "Clásica", price: "$4.25", desc: "Pan brioche ajonjolí 400°, salsa de la casa, tocino, lechuga, 120g de res, queso holandés madurado, tomate." },
+      { name: "Cheeseburger Americana", price: "$5.00", desc: "Pan de papa 400°, mostaza, cebolla en cubos, pepinillos, 120g de res, queso americano." },
+      { name: "Bacon Jam Burger", price: "$5.00", desc: "Pan brioche vainilla, 120g de res, reducción de café y mermelada de tocino.", tag: "Top" },
+      { name: "Sweet BBQ Burger", price: "$5.00", desc: "Pan pretzel 400°, salsa BBQ, 120g de res, queso americano, tocino gratinado." },
+      { name: "Oklahoma Burger Americana", price: "$5.00", desc: "Pan de papa 400°, 120g de res, cebolla caramelizada, queso americano." },
+    ],
   },
   {
-    name: "Combo Nocturno",
-    price: "$8.50",
-    desc: "Burger + papas + bebida. Solo después de las 8:00 PM.",
-    img: productCombo,
-    tag: "Combo",
+    title: "Alitas",
+    items: [
+      { name: "5 Alitas", price: "$5.00" },
+      { name: "10 Alitas", price: "$9.00" },
+      { name: "15 Alitas", price: "$13.00" },
+      { name: "20 Alitas", price: "$16.00" },
+      { name: "25 Alitas", price: "$19.00" },
+      { name: "30 Alitas", price: "$21.99" },
+    ],
+  },
+  {
+    title: "Hot Dogs",
+    items: [
+      { name: "Posi Dog", price: "$4.25", desc: "Estilo New York con salchicha ahumada, pan de papa tostado, queso americano fundido y crujientes bacon bits." },
+      { name: "Hot Dog 101", price: "$3.50", desc: "Pan de papa tostado, salchicha estilo New York, salsa de tomate y mostaza." },
+      { name: "Chili Cheese Dog", price: "$4.50", desc: "Salchicha estilo New York, chili auténtico mexicano y queso americano fundido.", tag: "Picante" },
+    ],
+  },
+  {
+    title: "Papas",
+    items: [
+      { name: "1/2 Porción", price: "$1.00", desc: "Papas doradas y crujientes con el toque perfecto de sal." },
+      { name: "1 Porción", price: "$2.00", desc: "Papas doradas y crujientes con el toque perfecto de sal." },
+      { name: "Cheddar Bacon", price: "$4.50", desc: "300g de papas crocantes bañadas en queso americano fundido y bacon bits." },
+      { name: "Chilli Cheese", price: "$4.50", desc: "300g de papas crocantes bañadas en queso americano fundido. Con bastante POWER." },
+    ],
+  },
+  {
+    title: "Extras",
+    items: [
+      { name: "Extra Carne", price: "$1.50" },
+      { name: "Extra Queso", price: "$0.50" },
+      { name: "Extra Bacon", price: "$1.00" },
+    ],
+  },
+  {
+    title: "Bebidas",
+    items: [
+      { name: "Cola 1L", price: "$1.00" },
+      { name: "Cola Personal", price: "$0.75" },
+      { name: "Agua Dasani", price: "$0.50" },
+      { name: "Fuze Tea", price: "$1.25" },
+    ],
   },
 ];
 
