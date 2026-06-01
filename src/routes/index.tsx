@@ -380,6 +380,70 @@ function ProductCard({ product }: { product: Product }) {
   );
 }
 
+function FullMenu() {
+  return (
+    <section id="carta" className="border-t border-white/10 bg-muted/20 px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
+          <h2 className="font-display border-l-8 border-secondary pl-6 text-5xl uppercase md:text-6xl">
+            La carta completa
+          </h2>
+          <p className="font-mono max-w-sm text-xs uppercase tracking-widest text-white/50">
+            Toca cualquier ítem para pedirlo por WhatsApp.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+          {fullMenu.map((cat) => (
+            <div key={cat.title} className="border border-white/10 bg-background/40 p-6">
+              <h3 className="font-display mb-6 inline-block border-2 border-foreground px-4 py-1 text-2xl uppercase">
+                {cat.title}
+              </h3>
+              <ul className="divide-y divide-white/5">
+                {cat.items.map((it) => (
+                  <li key={it.name} className="py-3">
+                    <a
+                      href={waLink(`Hola! Quiero pedir ${it.name} (${it.price}).`)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex items-baseline justify-between gap-4 hover:text-primary"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-display text-lg uppercase tracking-tight">
+                            {it.name}
+                          </span>
+                          {it.tag && (
+                            <span className="font-mono bg-secondary px-2 py-0.5 text-[9px] font-bold uppercase tracking-widest text-secondary-foreground">
+                              {it.tag}
+                            </span>
+                          )}
+                        </div>
+                        {it.desc && (
+                          <p className="mt-1 text-xs text-white/50 group-hover:text-white/70">
+                            {it.desc}
+                          </p>
+                        )}
+                      </div>
+                      <span className="font-mono shrink-0 text-primary">{it.price}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <p className="font-mono mt-10 text-center text-xs uppercase tracking-widest text-white/40">
+          Alitas disponibles en BBQ, miel y mostaza · Precios incluyen IVA
+        </p>
+      </div>
+    </section>
+  );
+}
+
+
+
 function Promo() {
   return (
     <section id="promos" className="relative overflow-hidden bg-primary py-20 text-primary-foreground">
