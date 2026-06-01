@@ -458,15 +458,15 @@ function Promo() {
             ● Promo limitada
           </span>
           <h2 className="font-display mt-4 text-6xl uppercase leading-none md:text-7xl">
-            Combo<br />Universitario
+            15 Alitas<br />Power
           </h2>
           <p className="mt-6 max-w-md text-lg font-bold">
-            Burger simple + papas + soda por solo{" "}
-            <span className="bg-black px-2 py-1 text-white">$6.99</span>. Lunes a
-            Jueves.
+            15 alitas con tu salsa favorita (BBQ, miel o mostaza) por solo{" "}
+            <span className="bg-black px-2 py-1 text-white">$13.00</span>. Ideal
+            para compartir.
           </p>
           <a
-            href={waLink("Hola! Quiero el Combo Universitario ($6.99).")}
+            href={waLink("Hola! Quiero la promo de 15 Alitas ($13.00).")}
             target="_blank"
             rel="noreferrer"
             className="mt-8 inline-block bg-black px-10 py-4 font-black uppercase text-white transition-colors hover:bg-secondary"
