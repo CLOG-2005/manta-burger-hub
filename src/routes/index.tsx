@@ -181,10 +181,13 @@ function Home() {
       <Hero />
       <Marquee />
       <Products />
+      <FullMenu />
       <Promo />
       <WhyUs />
       <Reviews />
       <Location />
+      <Footer />
+      <MobileBar />
       <Footer />
       <MobileBar />
     </div>
