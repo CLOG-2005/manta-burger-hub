@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import heroBurger from "@/assets/hero-burger.jpg";
 import productBaconYan from "@/assets/product-bacon-yan.jpg";
 import productAlitas from "@/assets/product-alitas.jpg";
@@ -14,50 +13,6 @@ const MAPS_URL = "https://maps.google.com/?q=Av.+26+Manta+Ecuador";
 
 const waLink = (msg: string) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Ya Sabes Donde! | Hamburguesas, Alitas y Hot Dogs en Manta" },
-      {
-        name: "description",
-        content:
-          "Las mejores hamburguesas artesanales en Manta. Pide por WhatsApp, ven al local en la Av. 26 o pide delivery. Sabor brutal, precios justos.",
-      },
-      { property: "og:title", content: "Ya Sabes Donde! — Hamburguesas en Manta" },
-      {
-        property: "og:description",
-        content:
-          "Hamburguesas, alitas y hot dogs con actitud callejera en Manta. Pide por WhatsApp.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { property: "og:image", content: heroBurger },
-      { name: "twitter:image", content: heroBurger },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Restaurant",
-          name: "Ya Sabes Donde!",
-          servesCuisine: ["Hamburguesas", "Alitas", "Hot Dogs", "Comida rápida"],
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Av. 26",
-            addressLocality: "Manta",
-            addressCountry: "EC",
-          },
-          priceRange: "$",
-          telephone: `+${WHATSAPP}`,
-        }),
-      },
-    ],
-  }),
-  component: Home,
-});
 
 type Product = {
   name: string;
@@ -174,7 +129,9 @@ const fullMenu: MenuCategory[] = [
   },
 ];
 
-function Home() {
+export default function App() {
+  // Reference unused image so tree-shaking keeps it (used in alitas section bg if needed later)
+  void productAlitas;
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <TopNav />
@@ -442,8 +399,6 @@ function FullMenu() {
   );
 }
 
-
-
 function Promo() {
   return (
     <section id="promos" className="relative overflow-hidden bg-primary py-20 text-primary-foreground">
@@ -493,21 +448,9 @@ function Promo() {
 
 function WhyUs() {
   const items = [
-    {
-      n: "01",
-      title: "Sabor Brutal",
-      text: "Recetas con combinaciones potentes y salsas secretas hechas en casa cada noche.",
-    },
-    {
-      n: "02",
-      title: "Rápido y Directo",
-      text: "Sin protocolos. Pides por WhatsApp y la comida sale caliente, lista en minutos.",
-    },
-    {
-      n: "03",
-      title: "Favorito en Manta",
-      text: "4.5★ en Google. La parada obligatoria de la noche en la Av. 26.",
-    },
+    { n: "01", title: "Sabor Brutal", text: "Recetas con combinaciones potentes y salsas secretas hechas en casa cada noche." },
+    { n: "02", title: "Rápido y Directo", text: "Sin protocolos. Pides por WhatsApp y la comida sale caliente, lista en minutos." },
+    { n: "03", title: "Favorito en Manta", text: "4.5★ en Google. La parada obligatoria de la noche en la Av. 26." },
   ];
   return (
     <section className="bg-muted/30 px-6 py-24">
@@ -526,21 +469,9 @@ function WhyUs() {
 
 function Reviews() {
   const reviews = [
-    {
-      q: "Las mejores hamburguesas de Manta. De lejos.",
-      a: "Andrés P.",
-      meta: "Google · 5★",
-    },
-    {
-      q: "Muy buen producto, buena calidad y el precio justo.",
-      a: "María L.",
-      meta: "Google · 5★",
-    },
-    {
-      q: "Buena comida, atención rápida y excelente precio.",
-      a: "Diego R.",
-      meta: "Google · 4★",
-    },
+    { q: "Las mejores hamburguesas de Manta. De lejos.", a: "Andrés P.", meta: "Google · 5★" },
+    { q: "Muy buen producto, buena calidad y el precio justo.", a: "María L.", meta: "Google · 5★" },
+    { q: "Buena comida, atención rápida y excelente precio.", a: "Diego R.", meta: "Google · 4★" },
   ];
   return (
     <section id="resenas" className="mx-auto max-w-7xl px-6 py-24">
@@ -558,12 +489,8 @@ function Reviews() {
             key={i}
             className="relative border border-white/10 bg-muted p-8 transition-all hover:border-primary/60"
           >
-            <div className="font-display absolute -top-6 left-6 text-7xl text-primary">
-              "
-            </div>
-            <p className="font-display mb-6 mt-4 text-xl uppercase leading-tight">
-              {r.q}
-            </p>
+            <div className="font-display absolute -top-6 left-6 text-7xl text-primary">"</div>
+            <p className="font-display mb-6 mt-4 text-xl uppercase leading-tight">{r.q}</p>
             <footer className="font-mono text-xs uppercase tracking-widest text-white/50">
               — {r.a} · {r.meta}
             </footer>
@@ -584,20 +511,14 @@ function Location() {
           </h2>
           <div className="mt-10 space-y-8">
             <div>
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Dirección
-              </div>
+              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Dirección</div>
               <p className="mt-2 text-2xl">Av. 26, Manta, Ecuador</p>
             </div>
             <div>
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">
-                Horarios
-              </div>
+              <div className="font-mono text-xs uppercase tracking-[0.3em] text-primary">Horarios</div>
               <p className="mt-2 text-white/70">
-                Lun – Jue: 18:00 – 01:00
-                <br />
-                Vie – Sáb: 18:00 – 03:00
-                <br />
+                Lun – Jue: 18:00 – 01:00<br />
+                Vie – Sáb: 18:00 – 03:00<br />
                 Dom: 18:00 – 00:00
               </p>
             </div>
@@ -651,39 +572,14 @@ function Footer() {
           </p>
         </div>
         <div className="flex flex-wrap gap-8">
-          <a
-            href="https://instagram.com/yasabesdonde.ec"
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary"
-          >
-            Instagram
-          </a>
-          <a
-            href="#"
-            className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary"
-          >
-            TikTok
-          </a>
-          <a
-            href="#"
-            className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary"
-          >
-            Facebook
-          </a>
-          <a
-            href={waLink("Hola!")}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary"
-          >
-            WhatsApp
-          </a>
+          <a href="https://instagram.com/yasabesdonde.ec" target="_blank" rel="noreferrer" className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary">Instagram</a>
+          <a href="#" className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary">TikTok</a>
+          <a href="#" className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary">Facebook</a>
+          <a href={waLink("Hola!")} target="_blank" rel="noreferrer" className="font-mono text-sm uppercase tracking-widest text-white/60 hover:text-primary">WhatsApp</a>
         </div>
       </div>
       <div className="font-mono mx-auto mt-12 max-w-7xl border-t border-white/5 pt-8 text-[10px] uppercase tracking-widest text-white/30">
-        © {new Date().getFullYear()} Ya Sabes Donde! · Manta, Ecuador · Sabor con
-        actitud
+        © {new Date().getFullYear()} Ya Sabes Donde! · Manta, Ecuador · Sabor con actitud
       </div>
     </footer>
   );
@@ -693,28 +589,9 @@ function MobileBar() {
   return (
     <nav className="fixed bottom-4 left-1/2 z-50 w-[92%] max-w-md -translate-x-1/2 md:hidden">
       <div className="flex items-center justify-between gap-1 rounded-full border border-white/15 bg-black/85 p-2 shadow-2xl backdrop-blur-xl">
-        <a
-          href={waLink("Hola! Quiero pedir.")}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 rounded-full bg-primary py-3 text-center text-[11px] font-black uppercase tracking-widest text-primary-foreground"
-        >
-          WhatsApp
-        </a>
-        <a
-          href="#menu"
-          className="flex-1 py-3 text-center text-[11px] font-black uppercase tracking-widest text-white/80"
-        >
-          Menú
-        </a>
-        <a
-          href={MAPS_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 py-3 text-center text-[11px] font-black uppercase tracking-widest text-white/80"
-        >
-          Mapa
-        </a>
+        <a href={waLink("Hola! Quiero pedir.")} target="_blank" rel="noreferrer" className="flex-1 rounded-full bg-primary py-3 text-center text-[11px] font-black uppercase tracking-widest text-primary-foreground">WhatsApp</a>
+        <a href="#menu" className="flex-1 py-3 text-center text-[11px] font-black uppercase tracking-widest text-white/80">Menú</a>
+        <a href={MAPS_URL} target="_blank" rel="noreferrer" className="flex-1 py-3 text-center text-[11px] font-black uppercase tracking-widest text-white/80">Mapa</a>
       </div>
     </nav>
   );
